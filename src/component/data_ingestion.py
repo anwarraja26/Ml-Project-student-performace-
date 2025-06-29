@@ -6,8 +6,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+# It is imported after creating the data_transformation file
 from src.component.data_transformation import DataTransformation
 from src.component.data_transformation import DataTransformationConfig
+
+#It is imported after creating the model_trainer file
+from src.component.model_trainer import ModelTrainer
+from src.component.model_trainer import ModelTrainderConfig
+
 # the DataIngestionConfig class is used to store the configuration for data ingestion like creating the path to store the splitted data files.
  
 @dataclass
@@ -50,11 +56,35 @@ class DataIngestion:
             raise CustomException(e,sys)
         
 # initializing the data ingestion component and executing the method
+################# The below is to check the data_ingestion.py file 
+################## python -m src.component.data_ingestion
+
+# if __name__=="__main__":
+#     obj=DataIngestion()
+#     obj.initiate_data_ingestion()
+
+#################### The below is to check the data_transformation.py file 
+#################### python -m src.component.data_ingestion because we call every thing from the data_ingestion.py file
+
+# if __name__=="__main__":
+#     obj=DataIngestion()
+#     train_data,test_data=obj.initiate_data_ingestion()
+#     data_trainsformation=DataTransformation()
+#     data_trainsformation.initiate_data_transformation(train_data,test_data)
+#     logging.info("Data ingestion completed successfully")
+#     logging.info("Data transformation completed successfully")
+
+
+#################### The below is to check the model_trainer.py file
+#################### python -m src.component.data_ingestion
+
 if __name__=="__main__":
     obj=DataIngestion()
     train_data,test_data=obj.initiate_data_ingestion()
+
     data_trainsformation=DataTransformation()
-    data_trainsformation.initiate_data_transformation(train_data,test_data)
-    logging.info("Data ingestion completed successfully")
-    logging.info("Data transformation completed successfully")
-            
+    train_arr,test_arr,_=data_trainsformation.initiate_data_transformation(train_data,test_data)
+    
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+
