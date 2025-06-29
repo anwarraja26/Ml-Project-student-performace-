@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.component.data_transformation import DataTransformation
+from src.component.data_transformation import DataTransformationConfig
 # the DataIngestionConfig class is used to store the configuration for data ingestion like creating the path to store the splitted data files.
  
 @dataclass
@@ -48,7 +50,11 @@ class DataIngestion:
             raise CustomException(e,sys)
         
 # initializing the data ingestion component and executing the method
-# if __name__=="__main__":
-#     obj=DataIngestion()
-#     obj.initiate_data_ingestion()
+if __name__=="__main__":
+    obj=DataIngestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+    data_trainsformation=DataTransformation()
+    data_trainsformation.initiate_data_transformation(train_data,test_data)
+    logging.info("Data ingestion completed successfully")
+    logging.info("Data transformation completed successfully")
             

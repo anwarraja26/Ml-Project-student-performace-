@@ -57,3 +57,8 @@
 +defaults/win-64::urllib3-2.2.3-py38haa95532_0
 +defaults/win-64::win_inet_pton-1.1.0-py38haa95532_0
 # update specs: ['scikit-learn']
+==> 2025-06-29 16:48:58 <==
+# cmd: D:\ANACONDA\Scripts\conda-script.py install dill
+# conda version: 24.7.1
++defaults/win-64::dill-0.3.8-py38haa95532_0
+# update specs: ['dill']
