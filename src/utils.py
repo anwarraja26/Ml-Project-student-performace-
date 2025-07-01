@@ -40,4 +40,13 @@ def evaluate_models(X_train, y_train, X_test, y_test, models,param):
 
         return report  # ✅ return proper dictionary
     except Exception as e:
-        raise CustomException(e, sys)  # ✅ raise, don't return
+        raise CustomException(e, sys) 
+    
+
+def load_object(file_path):
+    # rb means reading the binary file 
+    try:
+        with open(file_path,'rb') as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        raise CustomException(e,sys)
